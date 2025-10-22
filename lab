@@ -1,0 +1,93 @@
+public class Student {
+    // Attributes
+    private String name;
+    private int ID;
+    private double gpa;
+    
+    // Static attribute to count number of students
+    private static int numOfStudents = 0;
+
+    // Constructor
+    public Student(String name, int ID, double gpa) {
+        this.name = name;
+        this.ID = ID;
+        this.gpa = gpa;
+        numOfStudents++; // كل ما ننشئ كائن جديد يزيد العداد
+    }
+
+    // Copy constructor
+    public Student(Student other) {
+        this.name = other.name;
+        this.ID = other.ID;
+        this.gpa = other.gpa;
+        numOfStudents++;
+    }
+
+    // Display info
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + ID);
+        System.out.println("GPA: " + gpa);
+        System.out.println("------------------------");
+    }
+
+    // Check if student is passing
+    public boolean isPassing() {
+        return gpa >= 2.0;
+    }
+
+    // Equals method
+    public boolean equals(Student other) {
+        return this.name.equals(other.name) &&
+               this.ID == other.ID &&
+               this.gpa == other.gpa;
+    }
+
+    // Getter & Setter for name
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Static method to get number of students
+    public static int getNumOfStudents() {
+        return numOfStudents;
+    }
+}
+
+
+public class StudentDemo {
+    public static void main(String[] args) {
+        // Create obj1 using constructor
+        Student obj1 = new Student("YourName", 1234, 4.5);
+
+        // Create obj2 as a copy of obj1
+        Student obj2 = new Student(obj1);
+
+        // Display info of obj1 and obj2
+        System.out.println("=== First Display ===");
+        obj1.displayInfo();
+        obj2.displayInfo();
+
+        // Check equality
+        System.out.println("obj1 equals obj2? " + obj1.equals(obj2));
+
+        // Change name of obj2
+        obj2.setName("Maha");
+
+        // Check equality again
+        System.out.println("\nAfter changing obj2's name:");
+        System.out.println("obj1 equals obj2? " + obj1.equals(obj2));
+
+        // Display info again
+        System.out.println("\n=== Second Display ===");
+        obj1.displayInfo();
+        obj2.displayInfo();
+
+        // Print number of created objects
+        System.out.println("Number of created students: " + Student.getNumOfStudents());
+    }
+}
